@@ -1,6 +1,6 @@
 <?php
 
-class Database{
+class db{
   private $servername = "localhost";
   private $database = "url";
   private $username = "root";
@@ -8,7 +8,7 @@ class Database{
   private $table = "links ";
   private $conn;
 
-  public function __construct(){
+  public function __construct($servername = 'localhost', $username = 'root', $password = 'root', $database = 'url'){
     $conn = new mysqli($servername, $username, $password);
     if($conn->connect_error){
       die("Connection Failed: ". $conn->connect_error);
