@@ -1,37 +1,33 @@
 <?php
 
 class db{
-  private $servername = "localhost";
-  private $database = "url";
-  private $username = "root";
-  private $password = "root";
-  private $table = "links ";
-  private $conn;
 
-  public function __construct($servername = 'localhost', $username = 'root', $password = 'root', $database = 'url'){
-    $conn = new mysqli($servername, $username, $password);
-    if($conn->connect_error){
-      die("Connection Failed: ". $conn->connect_error);
-    }
-    //create database if it doesnt exist
-    if($conn->select_db($database) === false){
-      if($result = $conn->query("CREATE DATABASE url;")) {
+  public $conn;
+  private $host;
+  private $user;
+  private $pass;
+  private $database;
 
-      }
-    }
-    //select the database to work with
-    $conn->select_db($database);
+  public function __construct(){
+    $this->db_connect();
   }
 
-  protected function execute_query($sql){
-    $result = $conn->query($sql);
-    return $result;
+  private function db_connect(){
+    $host = 'localhost';
+    $user = "root";
+    $pass = "root";
+    $database = 'url';
+    $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->databas);
+    if($this->conn->connect_error){
+      die("Connection Failed: ". $this->conn->connect_error);
+    }
+    $this->conn->select_db("links");
+    return $this->conn;
   }
 
-  public function get_rows($url){
-    $sql = "SELECT COUNT(*) FROM links WHERE url = $url";
-    $results = $this->execute_query($sql);
-    return $results;
+  public function db_num($sql){
+    $result = $this->conn->query($sql);
+    return $result->num_rows;
   }
 
 

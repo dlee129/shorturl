@@ -1,14 +1,9 @@
 <?php
-include 'db.php';
+require('db.php');
 
-$servername = "localhost";
-$database = "url";
-$username = "root";
-$password = "root";
-
-
-$db = new db($servername, $username, $password, $database);
-
+$db = new db();
+$sql = "SELECT * FROM links";
+echo $db->db_nums($sql);
 
 
  ?>
