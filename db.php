@@ -13,11 +13,11 @@ class db{
   }
 
   private function db_connect(){
-    $host = 'localhost';
-    $user = "root";
-    $pass = "root";
-    $database = 'url';
-    $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->databas);
+    $this->host = 'localhost';
+    $this->user = "root";
+    $this->pass = "root";
+    $this->database = 'url';
+    $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->database);
     if($this->conn->connect_error){
       die("Connection Failed: ". $this->conn->connect_error);
     }
